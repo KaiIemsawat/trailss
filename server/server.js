@@ -106,8 +106,8 @@ app.post("/api/uploadByLink", async (req, res) => {
             const destinationPath = `/var/www/uploads/${newFileName}`;
             await imageDownloader.image({
                 url: link,
-                // dest: __dirname + "/uploads/" + newFileName, // ! NOTE
-                dest: destinationPath,
+                dest: __dirname + "/uploads/" + newFileName, // ! NOTE
+                // dest: destinationPath,
             });
             res.json(newFileName);
         } else {
@@ -119,8 +119,8 @@ app.post("/api/uploadByLink", async (req, res) => {
     }
 });
 //
-// const photoMidWare = multer({ dest: "uploads/" }); // ! NOTE
-const photoMidWare = multer({ dest: "/var/www/uploads/" });
+const photoMidWare = multer({ dest: "uploads/" }); // ! NOTE
+// const photoMidWare = multer({ dest: "/var/www/uploads/" });
 
 // "photos" need to match with data.set("photos", files); in uploadPhoto() in MyTrail.jsx
 // 100 is the limit (can be any other number)
@@ -134,8 +134,8 @@ app.post("/api/upload", photoMidWare.array("photos", 100), (req, res) => {
         const newPath = `${path}.${extension}`;
         // console.log(path + " " + newPath);
         fs.renameSync(path, newPath);
-        // uploadedFiles.push(newPath.replace("uploads/", "")); // ! NOTE
-        uploadedFiles.push(newPath.replace("/var/www/uploads/", ""));
+        uploadedFiles.push(newPath.replace("uploads/", "")); // ! NOTE
+        // uploadedFiles.push(newPath.replace("/var/www/uploads/", ""));
     }
     res.json(uploadedFiles);
 });
