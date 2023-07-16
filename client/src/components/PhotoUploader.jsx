@@ -42,9 +42,7 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
             } else {
                 const data = new FormData();
 
-                for (let i = 0; i < files.length; i++) {
-                    data.append("photos", files[i]);
-                }
+                data.append("photos", files[i]);
 
                 axios
                     .post("/api/upload", data, {
