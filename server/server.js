@@ -107,7 +107,6 @@ app.post("/api/uploadByLink", async (req, res) => {
             await imageDownloader.image({
                 url: link,
                 dest: __dirname + "/uploads/" + newFileName, // ! NOTE
-                // dest: destinationPath,
             });
             res.json(newFileName);
         } else {
@@ -120,7 +119,6 @@ app.post("/api/uploadByLink", async (req, res) => {
 });
 //
 const photoMidWare = multer({ dest: "uploads/" }); // ! NOTE
-// const photoMidWare = multer({ dest: "/var/www/uploads/" });
 
 // "photos" need to match with data.set("photos", files); in uploadPhoto() in MyTrail.jsx
 // 100 is the limit (can be any other number)
@@ -135,7 +133,6 @@ app.post("/api/upload", photoMidWare.array("photos", 100), (req, res) => {
         // console.log(path + " " + newPath);
         fs.renameSync(path, newPath);
         uploadedFiles.push(newPath.replace("uploads/", "")); // ! NOTE
-        // uploadedFiles.push(newPath.replace("/var/www/uploads/", ""));
     }
     res.json(uploadedFiles);
 });
