@@ -50,24 +50,29 @@ app.post("/api/login", async (req, res) => {
         res.status(400).json("User not found");
     } else {
         console.log("Found user in database");
-        const isPasswordOk = bcrypt.compareSync(password, userDoc.password);
-        if (isPasswordOk) {
-            console.log("User provide valid credentials");
-            jwt.sign(
-                {
-                    email: userDoc.email,
-                    id: userDoc._id,
-                },
-                jwtScret,
-                {},
-                (err, token) => {
-                    if (err) throw err;
-                    res.cookie("token", token).json(userDoc);
-                }
-            );
+        // console.log(password);
+        if (!password) {
+            res.status(400).json("No password input");
         } else {
-            console.log("Password is incorrect");
-            res.json({ message: "invalid credentials" });
+            const isPasswordOk = bcrypt.compareSync(password, userDoc.password);
+            if (isPasswordOk) {
+                console.log("User provide valid credentials");
+                jwt.sign(
+                    {
+                        email: userDoc.email,
+                        id: userDoc._id,
+                    },
+                    jwtScret,
+                    {},
+                    (err, token) => {
+                        if (err) throw err;
+                        res.cookie("token", token).json(userDoc);
+                    }
+                );
+            } else {
+                console.log("Password is incorrect");
+                res.json({ message: "invalid credentials" });
+            }
         }
     }
 });
