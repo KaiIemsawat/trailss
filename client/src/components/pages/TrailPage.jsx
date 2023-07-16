@@ -13,7 +13,7 @@ export default function TrailPage() {
         if (!id) {
             return;
         }
-        axios.get(`/trails/${id}`).then((response) => {
+        axios.get(`/api/trails/${id}`).then((response) => {
             console.log(response.data);
             setTrail(response.data);
         });

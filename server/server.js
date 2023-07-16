@@ -22,11 +22,11 @@ mongoose.connect(
     "mongodb+srv://kaiiemsawat:Kinkin3710@cluster0.48awedd.mongodb.net/trails?retryWrites=true&w=majority"
 );
 
-app.get("/test", (req, res) => {
+app.get("/api/test", (req, res) => {
     res.json("Test OK");
 });
 
-app.post("/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
@@ -42,7 +42,7 @@ app.post("/register", async (req, res) => {
     }
 });
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
     const { email, password } = req.body;
     const userDoc = await UserModel.findOne({ email });
     if (!userDoc) {
@@ -72,7 +72,7 @@ app.post("/login", async (req, res) => {
     }
 });
 
-app.get("/profile", (req, res) => {
+app.get("/api/profile", (req, res) => {
     const { token } = req.cookies;
     if (token) {
         jwt.verify(token, jwtScret, {}, async (err, userData) => {
@@ -86,11 +86,11 @@ app.get("/profile", (req, res) => {
         res.json(null);
     }
 });
-app.post("/logout", (erq, res) => {
+app.post("/api/logout", (erq, res) => {
     res.cookie("token", "").json(true);
 });
 
-app.post("/uploadByLink", async (req, res) => {
+app.post("/api/uploadByLink", async (req, res) => {
     const { link } = req.body;
     // console.log(link);
 
@@ -121,7 +121,7 @@ const photoMidWare = multer({ dest: "uploads/" });
 
 // "photos" need to match with data.set("photos", files); in uploadPhoto() in MyTrail.jsx
 // 100 is the limit (can be any other number)
-app.post("/upload", photoMidWare.array("photos", 100), (req, res) => {
+app.post("/api/upload", photoMidWare.array("photos", 100), (req, res) => {
     const uploadedFiles = [];
     // console.log(req.files);
     for (let i = 0; i < req.files.length; i++) {
@@ -136,7 +136,7 @@ app.post("/upload", photoMidWare.array("photos", 100), (req, res) => {
     res.json(uploadedFiles);
 });
 
-app.post("/trails", (req, res) => {
+app.post("/api/trails", (req, res) => {
     const { token } = req.cookies;
     const {
         title,
@@ -170,7 +170,7 @@ app.post("/trails", (req, res) => {
     });
 });
 
-app.get("/userTrails", (req, res) => {
+app.get("/api/userTrails", (req, res) => {
     const { token } = req.cookies;
     jwt.verify(token, jwtScret, {}, async (err, userData) => {
         const { id } = userData;
@@ -178,12 +178,12 @@ app.get("/userTrails", (req, res) => {
     });
 });
 
-app.get("/trails/:id", async (req, res) => {
+app.get("/api/trails/:id", async (req, res) => {
     const { id } = req.params;
     res.json(await TrailModel.findById(id));
 });
 
-app.put("/trails", async (req, res) => {
+app.put("/api/trails", async (req, res) => {
     const { token } = req.cookies;
     const {
         id,
@@ -219,11 +219,11 @@ app.put("/trails", async (req, res) => {
     });
 });
 
-app.get("/allTrails", async (req, res) => {
+app.get("/api/allTrails", async (req, res) => {
     res.json(await TrailModel.find());
 });
 
-app.delete("/deleteTrail/:id", (req, res) => {
+app.delete("/api/deleteTrail/:id", (req, res) => {
     TrailModel.deleteOne({ _id: req.params.id }).catch((err) => {
         res.status(400).json({ message: "something wrong when delete", err });
     });

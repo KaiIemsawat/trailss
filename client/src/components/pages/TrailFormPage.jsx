@@ -25,7 +25,7 @@ export default function TrailFormPage() {
         if (!id) {
             return;
         }
-        axios.get(`/trails/${id}`).then((response) => {
+        axios.get(`/api/trails/${id}`).then((response) => {
             const { data } = response;
             setTitle(data.title);
             setLocation(data.location);
@@ -73,7 +73,7 @@ export default function TrailFormPage() {
         if (id) {
             // if there is id as params
             // edit current trail
-            await axios.put("/trails", {
+            await axios.put("/api/trails", {
                 id,
                 ...trailsData,
             });
@@ -81,7 +81,7 @@ export default function TrailFormPage() {
         } else {
             // if there is no id in params
             // add new trail
-            await axios.post("/trails", {
+            await axios.post("/api/trails", {
                 ...trailsData,
             });
             nav("/account/myTrails");

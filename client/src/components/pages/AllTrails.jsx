@@ -6,7 +6,7 @@ import AccountNavigation from "../AccountNavigation";
 function AllTrails() {
     const [trails, setTrails] = useState([]);
     useEffect(() => {
-        axios.get("/allTrails").then((response) => {
+        axios.get("/api/allTrails").then((response) => {
             setTrails(response.data);
         });
     }, []);
@@ -21,6 +21,7 @@ function AllTrails() {
                                 {eachTrail.photo?.[0] && (
                                     <img
                                         className="rounded-2xl object-cover aspect-square"
+                                        // src={`/uploads/${eachTrail.photo[0]}`}
                                         src={`http://localhost:8000/uploads/${eachTrail.photo[0]}`}
                                         alt={eachTrail.title}
                                     />

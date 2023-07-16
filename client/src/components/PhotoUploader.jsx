@@ -10,7 +10,7 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
     async function addPhotoByLink(e) {
         e.preventDefault();
 
-        const { data: filename } = await axios.post("/uploadByLink", {
+        const { data: filename } = await axios.post("/api/uploadByLink", {
             link: photoLink,
         });
         // console.log(photoLink, " from photo link");
@@ -42,7 +42,7 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
         }
 
         axios
-            .post("/upload", data, {
+            .post("/api/upload", data, {
                 headers: { "Content-type": "multipart/form-data" },
             })
             .then((response) => {

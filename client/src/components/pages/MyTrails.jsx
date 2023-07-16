@@ -16,25 +16,25 @@ import AccountNavigation from "../AccountNavigation";
 export default function MyTrails() {
     const [trails, setTrails] = useState([]);
     useEffect(() => {
-        axios.get("/userTrails").then(({ data }) => {
+        axios.get("/api/userTrails").then(({ data }) => {
             setTrails(data);
         });
     }, [trails]);
 
-    const nav = useNavigate();
-    const [title, setTitle] = useState("");
-    const [location, setLocation] = useState("");
-    const [addedPhoto, setAddedPhoto] = useState([]);
-    const [photoLink, setPhotoLink] = useState("");
-    const [description, setDescription] = useState("");
-    const [amenities, setAmenities] = useState([]);
-    const [extraInfo, setExtraInfo] = useState("");
-    const [distance, setDistance] = useState(1);
-    const [difficulty, setDifficulty] = useState(1);
-    const [duration, setDuration] = useState(1);
+    // const nav = useNavigate();
+    // const [title, setTitle] = useState("");
+    // const [location, setLocation] = useState("");
+    // const [addedPhoto, setAddedPhoto] = useState([]);
+    // const [photoLink, setPhotoLink] = useState("");
+    // const [description, setDescription] = useState("");
+    // const [amenities, setAmenities] = useState([]);
+    // const [extraInfo, setExtraInfo] = useState("");
+    // const [distance, setDistance] = useState(1);
+    // const [difficulty, setDifficulty] = useState(1);
+    // const [duration, setDuration] = useState(1);
 
     function deleteHandler(id) {
-        axios.delete(`/deleteTrail/${id}`).catch((err) => {
+        axios.delete(`/api/deleteTrail/${id}`).catch((err) => {
             console.log(err);
         });
     }

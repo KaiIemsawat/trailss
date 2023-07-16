@@ -7,7 +7,7 @@ export default function IndexPage() {
     const { user } = useContext(UserContext);
     const [trails, setTrails] = useState([]);
     useEffect(() => {
-        axios.get("/allTrails").then((response) => {
+        axios.get("/api/allTrails").then((response) => {
             setTrails(response.data);
         });
     }, []);
