@@ -118,7 +118,7 @@ app.post("/api/uploadByLink", async (req, res) => {
         res.json("Not a proper image link");
     }
 });
-
+//
 // const photoMidWare = multer({ dest: "uploads/" }); // ! NOTE
 const photoMidWare = multer({ dest: "/var/www/uploads/" });
 
