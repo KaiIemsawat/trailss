@@ -14,14 +14,15 @@ function LoginPage() {
         e.preventDefault();
         try {
             const data = await axios.post("/api/login", { email, password });
-            setUser(data);
-            console.log(data.data.message, "data");
+            // console.log(data);
+            setUser(data.data);
+            // console.log(data.data.message, "data");
             if (data.data.message) {
                 alert("invalid credentials, please try again");
             } else {
                 alert("LOGGED IN");
                 nav("/");
-                window.location.reload(); // ! tempory fix issue that the name only appear once refresh page
+                // window.location.reload(); // ! tempory fix issue that the name only appear once refresh page
             }
         } catch (error) {
             alert("FAILED TO LOG IN");

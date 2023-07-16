@@ -73,18 +73,30 @@ export default function TrailFormPage() {
         if (id) {
             // if there is id as params
             // edit current trail
-            await axios.put("/api/trails", {
-                id,
-                ...trailsData,
-            });
-            nav("/account/myTrails");
+            try {
+                await axios.put("/api/trails", {
+                    id,
+                    ...trailsData,
+                });
+                nav("/account/myTrails");
+            } catch (error) {
+                // console.log(error);
+                console.log(error.response.data.message);
+                alert(error.response.data.message);
+            }
         } else {
             // if there is no id in params
             // add new trail
-            await axios.post("/api/trails", {
-                ...trailsData,
-            });
-            nav("/account/myTrails");
+            try {
+                await axios.post("/api/trails", {
+                    ...trailsData,
+                });
+                console.log(trailsData, " from TrailForm");
+                nav("/account/myTrails");
+            } catch (error) {
+                console.log(error.response.data.err.message);
+                alert(error.response.data.err.message);
+            }
         }
     }
 
@@ -185,11 +197,6 @@ export default function TrailFormPage() {
                 </div>
                 <button className="primary mt-4">save my trail</button>
             </form>
-            {/* <div className="flex flex-col items-center">
-                <button className=" bg-slate-300 w-1/4 my-4 py-2 px-4 rounded-2xl" onClick={() => deleteHandler()}>
-                    remove
-                </button>
-            </div> */}
         </div>
     );
 }

@@ -20,7 +20,8 @@ export default function AccountNavigation() {
     /* linkClasses() {} <---- create base styles and assign additional style if the conditions meet
     then assign as classname in Tags */
     function linkClasses(type = null) {
-        let classes = "p-2 px-6 inline-flex gap-1 items-center rounded-full";
+        let classes =
+            "p-2 px-6 inline-flex gap-1 items-center rounded-full text-sm";
         if (type === subpage) {
             classes += " bg-primary text-white";
         } else {
@@ -31,17 +32,17 @@ export default function AccountNavigation() {
     return (
         <nav className="w-full flex justify-center mt-8 mb-8 gap-2">
             <Link className={linkClasses("profile")} to={"/account"}>
-                <HiOutlineUser />
+                {/* <HiOutlineUser /> */}
                 My Profile
             </Link>
             <Link
                 className={linkClasses("allTrails")}
                 to={"/account/allTrails"}>
-                <CgTrees />
+                {/* <CgTrees /> */}
                 All Trails
             </Link>
             <Link className={linkClasses("myTrails")} to={"/account/myTrails"}>
-                <CgTree />
+                {/* <CgTree /> */}
                 My Trails
             </Link>
         </nav>

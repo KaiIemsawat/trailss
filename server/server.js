@@ -130,7 +130,7 @@ const photoMidWare = multer({ dest: "uploads/" }); // ! NOTE
 // 100 is the limit (can be any other number)
 app.post("/api/upload", photoMidWare.array("photos", 100), (req, res) => {
     const uploadedFiles = [];
-    // console.log(req.files);
+    console.log(req.files);
     for (let i = 0; i < req.files.length; i++) {
         // console.log(req.files[i].mimetype.split("/")[0]);
         if (req.files[i].mimetype.split("/")[0] === "image") {
@@ -138,8 +138,9 @@ app.post("/api/upload", photoMidWare.array("photos", 100), (req, res) => {
             const parts = originalname.split(".");
             const extension = parts[parts.length - 1];
             const newPath = `${path}.${extension}`;
-            // console.log(path + " " + newPath);
+            console.log(path + " " + newPath);
             fs.renameSync(path, newPath);
+            console.log(newPath);
             uploadedFiles.push(newPath.replace("uploads/", "")); // ! NOTE
         } else {
             res.status(400).json({ message: "File type not compatible" });
@@ -213,20 +214,25 @@ app.put("/api/trails", async (req, res) => {
         if (err) throw err;
 
         const trailsDoc = await TrailModel.findById(id);
-        if (userData.id === trailsDoc.poster.toString()) {
-            trailsDoc.set({
-                title,
-                location,
-                photo: addedPhoto,
-                descriptions,
-                amenities,
-                extraInfo,
-                distance,
-                difficulty,
-                duration,
-            });
-            await trailsDoc.save();
-            res.json("UPDATE OK");
+        try {
+            if (userData.id === trailsDoc.poster.toString()) {
+                trailsDoc.set({
+                    title,
+                    location,
+                    photo: addedPhoto,
+                    descriptions,
+                    amenities,
+                    extraInfo,
+                    distance,
+                    difficulty,
+                    duration,
+                });
+                await trailsDoc.save();
+                res.json("UPDATE OK");
+            }
+        } catch (error) {
+            console.error("error while update");
+            res.status(400).json(error);
         }
     });
 });
