@@ -34,23 +34,31 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
 
     function uploadPhoto(e) {
         const files = e.target.files;
-        // console.log({ files }); // <-- to check file
-        const data = new FormData();
-
+        console.log({ files }); // <-- to check file
         for (let i = 0; i < files.length; i++) {
-            data.append("photos", files[i]);
-        }
+            console.log(files[i].type.split("/")[0]);
+            if (files[i].type.split("/")[0] !== "image") {
+                alert("File not compatible");
+            } else {
+                const data = new FormData();
 
-        axios
-            .post("/api/upload", data, {
-                headers: { "Content-type": "multipart/form-data" },
-            })
-            .then((response) => {
-                const { data: filenames } = response;
-                onChange((prev) => {
-                    return [...prev, ...filenames];
-                });
-            });
+                for (let i = 0; i < files.length; i++) {
+                    data.append("photos", files[i]);
+                }
+
+                axios
+                    .post("/api/upload", data, {
+                        headers: { "Content-type": "multipart/form-data" },
+                    })
+                    .then((response) => {
+                        // console.log(response);
+                        const { data: filenames } = response;
+                        onChange((prev) => {
+                            return [...prev, ...filenames];
+                        });
+                    });
+            }
+        }
     }
 
     function removePhoto(e, filename) {

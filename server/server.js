@@ -123,6 +123,7 @@ app.post("/api/uploadByLink", async (req, res) => {
     }
 });
 //
+
 const photoMidWare = multer({ dest: "uploads/" }); // ! NOTE
 
 // "photos" need to match with data.set("photos", files); in uploadPhoto() in MyTrail.jsx
@@ -131,13 +132,18 @@ app.post("/api/upload", photoMidWare.array("photos", 100), (req, res) => {
     const uploadedFiles = [];
     // console.log(req.files);
     for (let i = 0; i < req.files.length; i++) {
-        const { path, originalname } = req.files[i];
-        const parts = originalname.split(".");
-        const extension = parts[parts.length - 1];
-        const newPath = `${path}.${extension}`;
-        // console.log(path + " " + newPath);
-        fs.renameSync(path, newPath);
-        uploadedFiles.push(newPath.replace("uploads/", "")); // ! NOTE
+        // console.log(req.files[i].mimetype.split("/")[0]);
+        if (req.files[i].mimetype.split("/")[0] === "image") {
+            const { path, originalname } = req.files[i];
+            const parts = originalname.split(".");
+            const extension = parts[parts.length - 1];
+            const newPath = `${path}.${extension}`;
+            // console.log(path + " " + newPath);
+            fs.renameSync(path, newPath);
+            uploadedFiles.push(newPath.replace("uploads/", "")); // ! NOTE
+        } else {
+            res.status(400).json({ message: "File type not compatible" });
+        }
     }
     res.json(uploadedFiles);
 });
