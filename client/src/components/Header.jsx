@@ -16,10 +16,15 @@ export default function Header() {
                 <Link
                     to={user ? "/account" : "/login"}
                     className="flex items-center border gap-2 border-slate-300 rounded-full py-2 px-4 shadow-md shadow-gray-300">
-                    <HiMenu />
+                    {/* <HiMenu /> */}
 
-                    {user && (
+                    {/* {user && (
                         <div className="text-primary">{user.username}</div>
+                    )} */}
+                    {user ? (
+                        <div className="text-primary">{user.username}</div>
+                    ) : (
+                        <div className="text-primary">step in</div>
                     )}
                 </Link>
             </header>

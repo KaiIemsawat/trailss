@@ -39,7 +39,7 @@ export default function TrailPage() {
                         trail.photo.map((eachPhoto, index) => (
                             <div key={index}>
                                 <img
-                                    className="min-w-full"
+                                    className="min-w-full "
                                     src={`http://localhost:8000/uploads/${eachPhoto}`}
                                     alt=""
                                 />
