@@ -78,17 +78,25 @@ app.post("/api/login", async (req, res) => {
 });
 
 app.get("/api/profile", (req, res) => {
-    const { token } = req.cookies;
-    if (token) {
-        jwt.verify(token, jwtScret, {}, async (err, userData) => {
-            if (err) throw err;
-            const { username, email, _id } = await UserModel.findById(
-                userData.id
-            );
-            res.json({ username, email, _id });
-        });
-    } else {
-        res.json(null);
+    try {
+        const { token } = req.cookies;
+        if (token) {
+            jwt.verify(token, jwtScret, {}, async (err, userData) => {
+                try {
+                    const { username, email, _id } = await UserModel.findById(
+                        userData.id
+                    );
+                    res.json({ username, email, _id });
+                    if (err) throw err;
+                } catch (error) {
+                    res.status(400).json(error);
+                }
+            });
+        } else {
+            res.json(null);
+        }
+    } catch (error) {
+        res.status(400).json(error);
     }
 });
 app.post("/api/logout", (erq, res) => {

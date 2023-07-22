@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
-const { Schema, model } = mongoose;
 
-const TrailsSchema = new Schema({
+const TrailsSchema = new mongoose.Schema({
     poster: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     title: { type: String, required: true, minLength: 2, unique: true },
     location: { type: String, required: true, minLength: 2 },
@@ -14,6 +13,6 @@ const TrailsSchema = new Schema({
     extraInfo: String,
 });
 
-const TrailModel = model("Trail", TrailsSchema);
+const TrailModel = mongoose.model("Trail", TrailsSchema);
 
 module.exports = TrailModel;
