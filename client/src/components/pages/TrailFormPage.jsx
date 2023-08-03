@@ -164,6 +164,7 @@ export default function TrailFormPage() {
                             value={distance}
                             onChange={(e) => setDistance(e.target.value)}
                             placeholder="5.6"
+                            step="0.1"
                             min="1"
                         />
                     </div>
