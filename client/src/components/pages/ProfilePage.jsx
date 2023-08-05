@@ -24,7 +24,7 @@ export default function ProfilePage() {
     }
 
     if (!isReady) {
-        return "Loading .........";
+        return <div className="flex items-center">Loading .........</div>;
     }
     if (isReady && !user && !redirect) {
         return <Navigate to={"/login"} />;

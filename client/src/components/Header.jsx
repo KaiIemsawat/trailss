@@ -3,6 +3,7 @@ import { HiMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "./UserContext.jsx";
+import IconTrees from "../assets/icons/treesIcon.jsx";
 
 export default function Header() {
     const { user } = useContext(UserContext);
@@ -10,7 +11,7 @@ export default function Header() {
         <div>
             <header className=" flex justify-between">
                 <Link to={"/"} className="flex items-center gap-1">
-                    <CgTrees className="w-6 h-6 text-primary" />
+                    <IconTrees className="w-6 h-6 text-primary" />
                     <span className="font-bold text-xl">Tra!ls</span>
                 </Link>
                 <Link

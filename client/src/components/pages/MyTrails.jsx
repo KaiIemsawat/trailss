@@ -12,6 +12,8 @@ import axios from "axios";
 import PhotoUploader from "../PhotoUploader";
 import TrailFormPage from "./TrailFormPage";
 import AccountNavigation from "../AccountNavigation";
+import IconDeleteOutline from "../../assets/icons/deleteIcon";
+import IconBxLocationPlus from "../../assets/icons/addLocationIcon";
 
 export default function MyTrails() {
     const [trails, setTrails] = useState([]);
@@ -35,8 +37,8 @@ export default function MyTrails() {
                 <Link
                     className="items-center inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full"
                     to={"/account/myTrails/new"}>
-                    <MdAddLocationAlt className="text-lg" />
-                    add new trail
+                    <IconBxLocationPlus className="text-lg" />
+                    add new tra!l
                 </Link>
                 <div className="mt-4">
                     {trails.length > 0 &&
@@ -69,8 +71,9 @@ export default function MyTrails() {
                                     onClick={(e) =>
                                         deleteHandler(eachTrail._id)
                                     }
-                                    className="cursor-pointer px-1 flex items-center absolute bottom-2 right-2 text-slate-300 text-lg bg-slate-300 bg-opacity-20 rounded">
-                                    <CiSquareRemove /> remove trail
+                                    className="cursor-pointer px-1 gap-1 flex items-center absolute bottom-2 right-2 text-slate-300 hover:text-red-400 duration-200 text-lg bg-slate-300 bg-opacity-20 hover:bg-opacity-0 rounded">
+                                    <IconDeleteOutline />
+                                    <p>remove trail</p>
                                 </button>
                             </div>
                         ))}

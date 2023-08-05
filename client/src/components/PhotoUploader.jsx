@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-import { BiImageAdd } from "react-icons/bi";
-import { CiSquareRemove } from "react-icons/ci";
-import { RiHeartLine, RiHeartFill } from "react-icons/ri";
+import StarIconEmpty from "../assets/icons/StarIconEmpty.jsx";
+import DeleteIcon from "../assets/icons/deleteIcon.jsx";
+import IconUpload from "../assets/icons/imageUploadIcon.jsx";
+import StarIconFilled from "../assets/icons/starIconFilled.jsx";
 
 export default function PhotoUploader({ addedPhoto, onChange }) {
     const [photoLink, setPhotoLink] = useState("");
@@ -73,6 +74,8 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
         ]);
     }
 
+    const btnEffect = "hover:scale-110 duration-200";
+
     return (
         <>
             <div className="flex gap-2">
@@ -84,7 +87,7 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
                 />
                 <button
                     onClick={addPhotoByLink}
-                    className="bg-slate-200 px-4 rounded-2xl">
+                    className="bg-white text-slate-600 border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-secondary/10 duration-200">
                     add&nbsp;photo
                 </button>
             </div>
@@ -100,15 +103,21 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
                             <button
                                 onClick={(e) => removePhoto(e, link)}
                                 className="cursor-pointer absolute bottom-2 right-2 text-slate-300 text-lg font-bold bg-slate-300 bg-opacity-20 rounded">
-                                <CiSquareRemove />
+                                <DeleteIcon
+                                    className={`text-slate-200/50 hover:text-slate-200 ${btnEffect}`}
+                                />
                             </button>
                             <button
                                 onClick={(e) => setMainPhoto(e, link)}
                                 className="cursor-pointer absolute top-2 right-2 text-slate-300 text-lg font-bold bg-slate-300 bg-opacity-20 rounded">
                                 {link === addedPhoto[0] ? (
-                                    <RiHeartFill />
+                                    <StarIconFilled
+                                        className={`text-slate-200/50 hover:text-slate-200 ${btnEffect}`}
+                                    />
                                 ) : (
-                                    <RiHeartLine />
+                                    <StarIconEmpty
+                                        className={`text-slate-200/50 hover:text-slate-200 ${btnEffect}`}
+                                    />
                                 )}
                             </button>
                         </div>
@@ -116,14 +125,14 @@ export default function PhotoUploader({ addedPhoto, onChange }) {
 
                 {/* --UPLOAD-- */}
 
-                <label className="h-32 cursor-pointer flex items-center justify-center border bg-transparent rounded-2xl p-2 text-slate-400 text-xl gap-1">
+                <label className="h-32 cursor-pointer flex items-center justify-center border bg-transparent rounded-2xl p-2 text-slate-400 text-xl gap-1 hover:bg-secondary/10 duration-200">
                     <input
                         type="file"
                         multiple
                         className="hidden"
                         onChange={uploadPhoto}
                     />
-                    <BiImageAdd className="w-8 h-8" /> Upload
+                    <IconUpload className={`w-8 h-8 ${btnEffect}`} /> Upload
                 </label>
             </div>
         </>

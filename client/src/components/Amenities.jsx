@@ -1,10 +1,12 @@
-import { PiDogBold, PiTicketBold } from "react-icons/pi";
-import { GiForestCamp } from "react-icons/gi";
-import { GrWheelchair } from "react-icons/gr";
-import { LiaRestroomSolid } from "react-icons/lia";
-import { BsBookmarks } from "react-icons/bs";
-import { IoCloudyNightOutline } from "react-icons/io5";
-import { TbParking, TbTent } from "react-icons/tb";
+import IconTent from "../assets/icons/campIcon";
+import IconCampfire from "../assets/icons/campfireIcon";
+import IconDog from "../assets/icons/dogIcon";
+import IconCloudMoon from "../assets/icons/moonIcon";
+import IconParkingSquare from "../assets/icons/parkingIcon";
+import IconSignpost2 from "../assets/icons/postIcon";
+import IconTicket from "../assets/icons/ticketIcon";
+import IconToiletsPortable from "../assets/icons/toletIcon";
+import IconWheelchairLine from "../assets/icons/wheelchairIcon";
 
 export default function Amenities({ selected, onChange }) {
     function checkboxClickHandler(e) {
@@ -18,10 +20,13 @@ export default function Amenities({ selected, onChange }) {
             ]);
         }
     }
+    const btnEffect =
+        "border p-4 flex rounded-2xl gap-2 items-center cursor-pointer hover:bg-secondary/10 duration-200";
+
     return (
         <>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <GrWheelchair className="" />
+            <label className={btnEffect}>
+                <IconWheelchairLine className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("wheelchair")}
@@ -31,8 +36,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Wheelchair</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <TbParking className="" />
+            <label className={btnEffect}>
+                <IconParkingSquare className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("parking")}
@@ -42,8 +47,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Parking</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <TbTent className="" />
+            <label className={btnEffect}>
+                <IconTent className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("campsite")}
@@ -53,8 +58,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Campsite</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <IoCloudyNightOutline className="" />
+            <label className={btnEffect}>
+                <IconCloudMoon className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("night usage")}
@@ -64,8 +69,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Night usage</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <PiTicketBold className="" />
+            <label className={btnEffect}>
+                <IconTicket className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("permit required")}
@@ -75,8 +80,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Permit required</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <PiDogBold className="" />
+            <label className={btnEffect}>
+                <IconDog className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("pets")}
@@ -86,8 +91,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Pets Allow</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <GiForestCamp className="" />
+            <label className={btnEffect}>
+                <IconCampfire className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("backcountry")}
@@ -97,8 +102,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Backcountry</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <BsBookmarks className="" />
+            <label className={btnEffect}>
+                <IconSignpost2 className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("guide mark")}
@@ -108,8 +113,8 @@ export default function Amenities({ selected, onChange }) {
                 />
                 <span className="text-slate-500">Guide mark</span>
             </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <LiaRestroomSolid className="" />
+            <label className={btnEffect}>
+                <IconToiletsPortable className="text-secondary" />
                 <input
                     type="checkbox"
                     checked={selected.includes("restroom")}

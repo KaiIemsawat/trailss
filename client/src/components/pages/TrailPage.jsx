@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { IoMdImages } from "react-icons/io";
-import { MdLocationPin } from "react-icons/md";
-import { CiSquareRemove } from "react-icons/ci";
+import IconDeleteOutline from "../../assets/icons/deleteIcon";
+import MapIcon from "../../assets/icons/mapIcon.jsx";
+import IconImages from "../../assets/icons/moreImageIcon.jsx";
 
 export default function TrailPage() {
     const { id } = useParams();
@@ -31,8 +31,8 @@ export default function TrailPage() {
                         {/* className="fixed" makes the button stay in the same place while scrolling */}
                         <button
                             onClick={() => setShowAllPhotos(false)}
-                            className="flex fixed gap-1 items-center py-2 px-4 rounded-2xl bg-slate-600 bg-opacity-30 text-slate-200 bottom-4 right-2 mx-8">
-                            <CiSquareRemove /> Close
+                            className="flex fixed gap-1 items-center py-2 px-4 rounded-2xl bg-slate-600 bg-opacity-30 text-slate-50 bottom-4 right-2 mx-8 hover:text-slate-200 hover:scale-110 duration-200">
+                            <IconDeleteOutline /> Close
                         </button>
                     </div>
                     {trail?.photo?.length > 0 &&
@@ -50,16 +50,17 @@ export default function TrailPage() {
         );
     }
     return (
-        <div className="mt-4 bg-slate-50 -mx-8 px-8 py-4">
-            <h1 className="text-3xl text-slate-700">{trail.title}</h1>
+        <div className="mt-4  -mx-8 px-8 py-4 ">
+            <h1 className="text-2xl text-slate-600">{trail.title}</h1>
             <a
-                className="flex items-center gap-1 my-3 font-semibold underline text-slate-500"
+                className="flex items-center gap-2  my-3 font-semibold underline text-slate-500"
                 target="_blank"
                 href={`https://maps.google.com/?q=${trail.location}`}>
-                <MdLocationPin />
-                {trail.location}
+                {/* <MdLocationPin /> */}
+                <MapIcon />
+                <p>{trail.location}</p>
             </a>
-            <div className="relative">
+            <div className="relative max-w-[1680px] mx-auto">
                 <div className="gap-2 grid grid-cols-[2fr_1fr]">
                     {/* grid grid-cols-[2fr_1fr] --- custom grid with 2 : 1 ratio */}
                     <div>
@@ -95,12 +96,15 @@ export default function TrailPage() {
                     <button
                         onClick={() => setShowAllPhotos(true)}
                         className="flex gap-1 items-center absolute bottom-1 right-1 px-2 py-1 bg-slate-400 bg-opacity-30 rounded-2xl">
-                        <IoMdImages /> More Photos
+                        <div className="flex items-center gap-1 text-slate-200/50 hover:text-slate-200 hover:scale-110 duration-200">
+                            <IconImages />
+                            <p>More Photo</p>
+                        </div>
                     </button>
                 ) : null}
             </div>
             <div className="mx-2 my-4">
-                <h2 className="font-semibold text-2xl text-slate-700">
+                <h2 className="font-semibold text-xl text-slate-600">
                     Descriptions
                 </h2>
                 <div className=" text-slate-500">{trail.descriptions}</div>
@@ -118,7 +122,7 @@ export default function TrailPage() {
             </div>
             {trail?.amenities?.length > 0 && (
                 <div className="mx-2 my-4">
-                    <h2 className="font-semibold text-2xl text-slate-700">
+                    <h2 className="font-semibold text-xl text-slate-600">
                         Amenities
                     </h2>
                     <div className="grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6  mt-4 gap-2">

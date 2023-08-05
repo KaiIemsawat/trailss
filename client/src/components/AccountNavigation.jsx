@@ -32,18 +32,15 @@ export default function AccountNavigation() {
     return (
         <nav className="w-full flex justify-center mt-8 mb-8 gap-2">
             <Link className={linkClasses("profile")} to={"/account"}>
-                {/* <HiOutlineUser /> */}
                 My Profile
             </Link>
             <Link
                 className={linkClasses("allTrails")}
                 to={"/account/allTrails"}>
-                {/* <CgTrees /> */}
-                All Trails
+                All Tra!ls
             </Link>
             <Link className={linkClasses("myTrails")} to={"/account/myTrails"}>
-                {/* <CgTree /> */}
-                My Trails
+                My Tra!ls
             </Link>
         </nav>
     );

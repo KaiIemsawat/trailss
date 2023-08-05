@@ -196,7 +196,7 @@ export default function TrailFormPage() {
                         />
                     </div>
                 </div>
-                <button className="primary mt-4">save my trail</button>
+                <button className="primary my-4">save my trail</button>
             </form>
         </div>
     );
