@@ -13,7 +13,7 @@ This is an application I built as a final solo project before my bootcamp gradua
 
 ## Screenshots
 
-![screenshot](/server/uploads/screenshotForReadme.png "screenshot")
+![screenshot](/server/uploads/trailss.png "screenshot")
 
 ## Available Commands
 
