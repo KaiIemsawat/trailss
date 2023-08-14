@@ -51,7 +51,7 @@ export default function TrailPage() {
     }
     return (
         <div className="mt-4  -mx-8 px-8 py-4 ">
-            <h1 className="text-2xl text-slate-600">{trail.title}</h1>
+            <h1 className="text-2xl text-secondary">{trail.title}</h1>
             <a
                 className="flex items-center gap-2  my-3 font-semibold underline text-slate-500"
                 target="_blank"

@@ -103,6 +103,7 @@ app.post("/api/logout", (erq, res) => {
     res.cookie("token", "").json(true);
 });
 
+// ! upload image from link
 app.post("/api/uploadByLink", async (req, res) => {
     const { link } = req.body;
     // console.log(link);
@@ -157,6 +158,7 @@ app.post("/api/upload", photoMidWare.array("photos", 100), (req, res) => {
     res.json(uploadedFiles);
 });
 
+// ! Create a trail
 app.post("/api/trails", (req, res) => {
     const { token } = req.cookies;
     const {
@@ -199,11 +201,13 @@ app.get("/api/userTrails", (req, res) => {
     });
 });
 
+// ! Get a trail
 app.get("/api/trails/:id", async (req, res) => {
     const { id } = req.params;
     res.json(await TrailModel.findById(id));
 });
 
+// ! Edit trail
 app.put("/api/trails", async (req, res) => {
     const { token } = req.cookies;
     const {
@@ -245,10 +249,12 @@ app.put("/api/trails", async (req, res) => {
     });
 });
 
+// ! Get all trails
 app.get("/api/allTrails", async (req, res) => {
     res.json(await TrailModel.find());
 });
 
+// ! Delete a trail
 app.delete("/api/deleteTrail/:id", (req, res) => {
     TrailModel.deleteOne({ _id: req.params.id }).catch((err) => {
         res.status(400).json({ message: "something wrong when delete", err });
